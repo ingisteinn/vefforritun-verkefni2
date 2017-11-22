@@ -1,0 +1,55 @@
+@charset "UTF-8";
+/* setjum box-sizing: border-box; á allt */
+/*þarf þetta?*/
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  color: white;
+  padding: 10px; }
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  /* fjarlægjum margin og padding */
+  margin: 0;
+  padding: 0;
+  /*veit ekki alveg hvort þurfi*/ }
+
+body {
+  background-color: rgba(0, 0, 0, 0.5); }
+
+main {
+  font-size: 1em; }
+
+/* TODO útfæra verkefni 5 */
+.heading {
+  /*font-family: 'Merriweather', georgia, serif; Hvaða letur á ég að nota??*/ }
+
+.heading--one {
+  font-size: 1.4em;
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px; }
+
+.heading--two {
+  font-size: 1.5em;
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px; }
+
+hr {
+  width: 70%;
+  margin: auto;
+  color: rgba(255, 255, 255, 0);
+  /*virkar ekki*/ }
+
+.button {
+  /*ekki búinn með takkann*/ }
+
+.button:hover {
+  background-color: #333;
+  /*þarf hover?*/ }
+
+@media (max-width: 800px) {
+  /* eitthvað kemur hér*/ }
+
+/*# sourceMappingURL=data:application/json;base64,ewoJInZlcnNpb24iOiAzLAoJImZpbGUiOiAic3R5bGVzLmNzcyIsCgkic291cmNlcyI6IFsKCQkic3R5bGVzLnNjc3MiLAoJCSJzY3NzL2luZGV4LnNjc3MiLAoJCSJzY3NzL3ZpZGVvLnNjc3MiCgldLAoJIm5hbWVzIjogW10sCgkibWFwcGluZ3MiOiAiO0FBQUEsNENBQTRDO0FBQzVDLGlCQUFpQjtBQUNqQixBQUFBLElBQUksQ0FBQztFQUNILFVBQVUsRUFBRSxVQUFVO0VBQ3RCLFNBQVMsRUFBRSxJQUFJO0VBQ2YsS0FBSyxFQUFFLEtBQXNCO0VBQzdCLE9BQU8sRUFBRSxJQUFJLEdBQ2Q7O0FBRUQsQUFBQSxDQUFDLEVBQUUsQUFBQSxDQUFDLEFBQUEsT0FBTyxFQUFFLEFBQUEsQ0FBQyxBQUFBLE1BQU0sQ0FBQztFQUNuQixVQUFVLEVBQUUsT0FBTztFQUVuQixtQ0FBbUM7RUFDbkMsTUFBTSxFQUFFLENBQUM7RUFDVCxPQUFPLEVBQUUsQ0FBQztFQUVWLGdDQUFnQyxFQUNqQzs7QUFFRCxBQUFBLElBQUksQ0FBQztFQUNILGdCQUFnQixFQUFFLGtCQUFrQixHQUNyQzs7QUFFRCxBQUFBLElBQUksQ0FBQTtFQUNBLFNBQVMsRUFBRSxHQUFHLEdBQ2pCOztBQ3pCRCw4QkFBOEI7QUFFOUIsQUFBQSxRQUFRLENBQUM7RUFDTCwrRUFBK0UsRUFFbEY7O0FBRUMsQUFBQSxhQUFhLENBQUM7RUFDWixTQUFTLEVBQUUsS0FBSztFQUNoQixNQUFNLEVBQUUsSUFBSTtFQUNaLFdBQVcsRUFBRSxJQUFJO0VBQ2pCLGNBQWMsRUFBRSxJQUFJLEdBQ3JCOztBQUVELEFBQUEsYUFBYSxDQUFDO0VBQ1osU0FBUyxFQUFFLEtBQUs7RUFDaEIsTUFBTSxFQUFFLElBQUk7RUFDWixXQUFXLEVBQUUsSUFBSTtFQUNqQixjQUFjLEVBQUUsSUFBSSxHQUNyQjs7QUFFSCxBQUFBLEVBQUUsQ0FBQTtFQUNBLEtBQUssRUFBRSxHQUFHO0VBQ1YsTUFBTSxFQUFFLElBQUk7RUFDWixLQUFLLEVBQUUsc0JBQXNCO0VBQUUsZUFBZSxFQUMvQzs7QUFFRCxBQUFBLE9BQU8sQ0FBQTtFQUNOLDRCQUE0QixFQUM1Qjs7QUFFRCxBQUFBLE9BQU8sQUFBQSxNQUFNLENBQUM7RUFDVixnQkFBZ0IsRUFBRSxJQUFJO0VBQUcsZ0JBQWdCLEVBQzVDOztBQUdELE1BQU0sRUFBRSxTQUFTLEVBQUUsS0FBSztFQUN4Qix5QkFBeUIiCn0= */

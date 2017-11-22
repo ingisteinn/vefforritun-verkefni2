@@ -1,0 +1,39 @@
+/* TODO útfæra verkefni 5 */
+
+.heading {
+    /*font-family: 'Merriweather', georgia, serif; Hvaða letur á ég að nota??*/
+
+}
+
+  .heading--one {
+    font-size: 1.4em;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .heading--two {
+    font-size: 1.5em;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+hr{
+  width: 70%;
+  margin: auto;
+  color: rgba(255, 255, 255, 0); /*virkar ekki*/
+}
+
+.button{
+ /*ekki búinn með takkann*/
+}
+
+.button:hover { 
+    background-color: #333; /*þarf hover?*/
+}
+
+
+@media (max-width: 800px) {
+/* eitthvað kemur hér*/
+}
