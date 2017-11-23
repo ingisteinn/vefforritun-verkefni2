@@ -104,14 +104,14 @@ class Video {
 
 
   //gæti mögulegt þurft að kveikja og slökkva á default controls herna qrueirgniuergnoano
-  //þarf greinilega fullt af mismunandi gerðum eftir browser
+
   fullscreen() {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      }
+    if (video.requestFullscreen) {
+      video.requestFullscreen();
+    } else if (video.mozRequestFullScreen) {
+      video.mozRequestFullScreen();
+    } else if (video.webkitRequestFullscreen) {
+      video.webkitRequestFullscreen();
     }
   }
 
@@ -135,7 +135,7 @@ class Video {
 
 document.addEventListener('DOMContentLoaded', () => {
   const playerContainer = document.querySelector('.player');
-  if(playerContainer) {
+  if (playerContainer) {
     const video = new Video(playerContainer);
     video.load();
   }
