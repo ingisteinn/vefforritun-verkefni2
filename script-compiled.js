@@ -187,13 +187,11 @@ var Video = function () {
       if (video.muted == false) {
         video.muted = true;
         var button = document.querySelector('.mute');
-        button.classList.remove('mute');
-        button.classList.add('unmute');
+        button.src = 'img/unmute.svg';
       } else {
         video.muted = false;
         var _button2 = document.querySelector('.unmute');
-        _button2.classList.remove('unmute');
-        _button2.classList.add('mute');
+        _button2.src = 'img/mute.svg';
       }
     }
 
