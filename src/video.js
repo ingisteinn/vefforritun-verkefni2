@@ -30,30 +30,26 @@ class Video {
     data.videos.forEach((video) => {
 
       if (id === video.id) {
-        
-var playerElement = document.createElement('div');
+
+        var playerElement = document.createElement('div');
         playerElement.classList.add('player');
-        
+
         var title = document.createElement('h1');
- title.appendChild(document.createTextNode(data.title));
+        title.appendChild(document.createTextNode(data.title));
         title.classList.add('heading-big');
-        
+
         var containerElement = document.createElement('div');
         containerElement.classList.add('player-container');
-        
+
         var overlayElement = document.createElement('div');
         containerElement.classList.add('player-container-overlay');
         //appendaaaaa
-       
+
         this.video = document.createElement('video');
         this.video.classList.add('player-container-video');
         this.video.src = data.video;
         this.video.appendChild(video);
-
-
-
       }
-
     });
   }
 

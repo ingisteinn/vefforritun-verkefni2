@@ -153,16 +153,24 @@ var Video = function () {
 
         if (id === video.id) {
 
+          var playerElement = document.createElement('div');
+          playerElement.classList.add('player');
+
           var title = document.createElement('h1');
           title.appendChild(document.createTextNode(data.title));
           title.classList.add('heading-big');
+
+          var containerElement = document.createElement('div');
+          containerElement.classList.add('player-container');
+
+          var overlayElement = document.createElement('div');
+          containerElement.classList.add('player-container-overlay');
+          //appendaaaaa
 
           _this2.video = document.createElement('video');
           _this2.video.classList.add('player-container-video');
           _this2.video.src = data.video;
           _this2.video.appendChild(video);
-        } else {
-          //error message, ekki til...
         }
       });
     }
