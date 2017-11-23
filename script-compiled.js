@@ -120,95 +120,107 @@ var Video = function () {
         }
         throw new Error('Something went wrong on api server!');
       }).then(function (data) {
-        _this.parseData(data);
+        _this.createButtons();
       }).catch(function (error) {
         console.error(error); // eslint-disable-line
       });
+    }
+
+    //Controls búin til og event listener settur á þá
+
+  }, {
+    key: 'createButtons',
+    value: function createButtons() {
+
+      var backButton = document.querySelector('.back');
+      backButton.addEventListener('click', this.back());
+
+      var playButton = document.querySelector('.play');
+      playButton.addEventListener('click', this.playpause());
+
+      var muteButton = document.querySelector('.mute');
+      muteButton.addEventListener('click', this.mute());
+
+      var fullscreenButton = document.querySelector('.fullscreen');
+      fullscreenButton.addEventListener('click', this.fullscreen());
+
+      var nextButton = document.querySelector('.next');
+      nextButton.addEventListener('click', this.next());
+    }
+
+    //Atburðir settir á eventlistener
+
+  }, {
+    key: 'playpause',
+    value: function playpause() {
+      if (video.paused == true) {
+        video.play();
+        var button = document.querySelector('.pause');
+        button.src = 'img/pause.svg';
+        //þarf líka að taka af overlay hérna
+      } else {
+        video.pause();
+        var _button = document.querySelector('.play');
+        _button.src = 'img/play.svg';
+        //setja overlay
+      }
+    }
+  }, {
+    key: 'mute',
+    value: function mute() {
+      if (video.muted == false) {
+        video.muted = true;
+        var button = document.querySelector('.mute');
+        button.classList.remove('mute');
+        button.classList.add('unmute');
+      } else {
+        video.muted = false;
+        var _button2 = document.querySelector('.unmute');
+        _button2.classList.remove('unmute');
+        _button2.classList.add('mute');
+      }
+    }
+
+    //gæti mögulegt þurft að kveikja og slökkva á default controls herna qrueirgniuergnoano
+    //þarf greinilega fullt af mismunandi gerðum eftir browser
+
+  }, {
+    key: 'fullscreen',
+    value: function fullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+  }, {
+    key: 'back',
+    value: function back() {
+      if (video.currenttime <= 3) {
+        video.currenttime = 0;
+      } else {
+        video.currenttime -= 3;
+      }
+    }
+  }, {
+    key: 'next',
+    value: function next() {
+      if (video.duration - video.currenttime <= 3) {
+        video.currenttime = video.duration;
+      } else {
+        video.currenttime += 3;
+      }
     }
   }]);
 
   return Video;
 }();
 
-//Controls búin til og event listener settur á þá
-
-function createButtons() {
-
-  var backButton = document.querySelector('player-controls-images-back');
-  backButton.addEventListener('click', back());
-
-  var playButton = document.querySelector('player-controls-images-play');
-  playButton.addEventListener('click', playpause());
-
-  var muteButton = document.querySelector('player-controls-images-mute');
-  muteButton.addEventListener('click', mute());
-
-  var fullscreenButton = document.querySelector('player-controls-images-fullscreen');
-  fullscreenButton.addEventListener('click', fullscreen());
-}
-
-//Atburðir settir á eventlistener
-
-function playpause() {
-  if (video.paused == true) {
-    video.play();
-    var button = document.querySelector('.button-controls-images-pause');
-    button.classList.removeChild('button-controls-images-pause');
-    button.classList.appendChild('button-controls-images-play');
-    //þarf líka að taka af overlay hérna
-  } else {
-    video.pause();
-    var _button = document.querySelector('.button-controls-images-play');
-    _button.classList.removeChild('button-controls-images-play');
-    _button.classList.appendChild('button-controls-images-pause');
-    //setja overlay
-  }
-}
-
-function mute() {
-  if (video.muted == false) {
-    video.muted = true;
-    var button = document.querySelector('.button-controls-images-mute');
-    button.classList.removeChild('button-controls-images-mute');
-    button.classList.appendChild('button-controls-images-unmute');
-  } else {
-    video.muted = false;
-    var _button2 = document.querySelector('.button-controls-images-unmute');
-    _button2.classList.removeChild('button-controls-images-unmute');
-  }
-}
-
-//gæti mögulegt þurft að kveikja og slökkva á default controls herna
-//þarf greinilega fullt af mismunandi gerðum eftir browser
-function fullscreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-  } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    }
-  }
-}
-
-function back() {
-  if (video.currenttime <= 3) {
-    video.currenttime = 0;
-  } else {
-    video.currenttime -= 3;
-  }
-}
-
-function next() {
-  if (video.duration - video.currenttime <= 3) {
-    video.currenttime = video.duration;
-  } else {
-    video.currenttime += 3;
-  }
-}
-
 document.addEventListener('DOMContentLoaded', function () {
   var video = new Video();
-  Video.load();
+  video.load();
 });
 
 //# sourceMappingURL=script-compiled.js.map
