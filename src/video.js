@@ -72,7 +72,7 @@ function mute() {
 }
 
 
-//gæti mögulegt þurft að kveikja og slökkva á default controls herna
+//gæti mögulegt þurft að kveikja og slökkva á default controls herna qrueirgniuergnoano
 //þarf greinilega fullt af mismunandi gerðum eftir browser
 function fullscreen() {
   if (!document.fullscreenElement) {
