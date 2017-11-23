@@ -16,7 +16,6 @@ class Video {
       })
       .then((data) => {
         this.getVideo(data);
-        this.createButtons();
       })
       .catch((error) => {
         console.error(error); // eslint-disable-line
@@ -25,30 +24,32 @@ class Video {
 
 
   getVideo(data) {
-    const id = window.location.search.split('=')[1];
-    console.log(id);
+    const id = parseInt(window.location.search.split('=')[1]);
     data.videos.forEach((video) => {
 
       if (id === video.id) {
 
-        var playerElement = document.createElement('div');
-        playerElement.classList.add('player');
-
-        var title = document.createElement('h1');
-        title.appendChild(document.createTextNode(data.title));
+        const title = document.createElement('h1');
         title.classList.add('heading-big');
+        title.appendChild(document.createTextNode(video.title));
 
-        var containerElement = document.createElement('div');
+        const containerElement = document.createElement('div');
         containerElement.classList.add('player-container');
 
-        var overlayElement = document.createElement('div');
+        const overlayElement = document.createElement('div');
         containerElement.classList.add('player-container-overlay');
         //appendaaaaa
 
         this.video = document.createElement('video');
         this.video.classList.add('player-container-video');
-        this.video.src = data.video;
-        this.video.appendChild(video);
+        this.video.src = video.video;
+        
+        overlayElement.appendChild(this.video);
+        containerElement.appendChild(overlayElement);
+        this.container.insertBefore(containerElement, this.container.childNodes[0]);
+        this.container.insertBefore(title, this.container.childNodes[0]);
+        
+        this.createButtons();
       }
     });
   }
@@ -58,34 +59,33 @@ class Video {
 
   createButtons() {
 
-    const backButton = document.querySelector('.back');
-    backButton.addEventListener('click', this.back());
+    this.backButton = document.querySelector('.back');
+    this.backButton.addEventListener('click', this.back.bind(this));
 
-    const playButton = document.querySelector('.play');
-    playButton.addEventListener('click', this.playpause());
+    this.playButton = document.querySelector('.play');
+    this.playButton.addEventListener('click', this.playpause.bind(this));
 
-    const muteButton = document.querySelector('.mute');
-    muteButton.addEventListener('click', this.mute());
+    this.muteButton = document.querySelector('.mute');
+    this.muteButton.addEventListener('click', this.mute.bind(this));
 
-    const fullscreenButton = document.querySelector('.fullscreen');
-    fullscreenButton.addEventListener('click', this.fullscreen());
+    this.fullscreenButton = document.querySelector('.fullscreen');
+    this.fullscreenButton.addEventListener('click', this.fullscreen.bind(this));
 
-    const nextButton = document.querySelector('.next');
-    nextButton.addEventListener('click', this.next());
+    this.nextButton = document.querySelector('.next');
+    this.nextButton.addEventListener('click', this.next.bind(this));
   }
 
   //Atburðir settir á eventlistener
 
   playpause() {
+      console.log(this.video);
     if (this.video.paused == true) {
       this.video.play();
-      const button = document.querySelector('.pause');
-      button.src = 'img/pause.svg'
+      this.playButton.src = 'img/pause.svg'
       //þarf líka að taka af overlay hérna
     } else {
       this.video.pause();
-      const button = document.querySelector('.play');
-      button.src = 'img/play.svg'
+      this.playButton.src = 'img/play.svg'
       //setja overlay
     }
   }
@@ -93,12 +93,10 @@ class Video {
   mute() {
     if (this.video.muted == false) {
       this.video.muted = true;
-      const button = document.querySelector('.mute');
-      button.src = 'img/unmute.svg'
+      this.muteButton.src = 'img/unmute.svg'
     } else {
       this.video.muted = false;
-      const button = document.querySelector('.unmute');
-      button.src = 'img/mute.svg'
+      this.muteButton.src = 'img/mute.svg'
     }
   }
 
@@ -106,13 +104,15 @@ class Video {
   //gæti mögulegt þurft að kveikja og slökkva á default controls herna qrueirgniuergnoano
 
   fullscreen() {
-    if (video.requestFullscreen) {
-      video.requestFullscreen();
-    } else if (video.mozRequestFullScreen) {
-      video.mozRequestFullScreen();
-    } else if (video.webkitRequestFullscreen) {
-      video.webkitRequestFullscreen();
-    }
+    if (this.video.requestFullscreen) {
+        this.video.requestFullscreen();
+      }
+      else if (this.video.mozRequestFullScreen) {
+        this.video.mozRequestFullScreen();
+      }
+      else if (this.video.webkitRequestFullscreen) {
+        this.video.webkitRequestFullscreen();
+      }
   }
 
   back() {

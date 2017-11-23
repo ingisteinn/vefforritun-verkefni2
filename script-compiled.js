@@ -178,7 +178,6 @@ var Video = function () {
         throw new Error('Something went wrong on api server!');
       }).then(function (data) {
         _this.getVideo(data);
-        _this.createButtons();
       }).catch(function (error) {
         console.error(error); // eslint-disable-line
       });
@@ -188,18 +187,14 @@ var Video = function () {
     value: function getVideo(data) {
       var _this2 = this;
 
-      var id = window.location.search.split('=')[1];
-      console.log(id);
+      var id = parseInt(window.location.search.split('=')[1]);
       data.videos.forEach(function (video) {
 
         if (id === video.id) {
 
-          var playerElement = document.createElement('div');
-          playerElement.classList.add('player');
-
           var title = document.createElement('h1');
-          title.appendChild(document.createTextNode(data.title));
           title.classList.add('heading-big');
+          title.appendChild(document.createTextNode(video.title));
 
           var containerElement = document.createElement('div');
           containerElement.classList.add('player-container');
@@ -210,8 +205,14 @@ var Video = function () {
 
           _this2.video = document.createElement('video');
           _this2.video.classList.add('player-container-video');
-          _this2.video.src = data.video;
-          _this2.video.appendChild(video);
+          _this2.video.src = video.video;
+
+          overlayElement.appendChild(_this2.video);
+          containerElement.appendChild(overlayElement);
+          _this2.container.insertBefore(containerElement, _this2.container.childNodes[0]);
+          _this2.container.insertBefore(title, _this2.container.childNodes[0]);
+
+          _this2.createButtons();
         }
       });
     }
@@ -223,20 +224,20 @@ var Video = function () {
     key: 'createButtons',
     value: function createButtons() {
 
-      var backButton = document.querySelector('.back');
-      backButton.addEventListener('click', this.back());
+      this.backButton = document.querySelector('.back');
+      this.backButton.addEventListener('click', this.back.bind(this));
 
-      var playButton = document.querySelector('.play');
-      playButton.addEventListener('click', this.playpause());
+      this.playButton = document.querySelector('.play');
+      this.playButton.addEventListener('click', this.playpause.bind(this));
 
-      var muteButton = document.querySelector('.mute');
-      muteButton.addEventListener('click', this.mute());
+      this.muteButton = document.querySelector('.mute');
+      this.muteButton.addEventListener('click', this.mute.bind(this));
 
-      var fullscreenButton = document.querySelector('.fullscreen');
-      fullscreenButton.addEventListener('click', this.fullscreen());
+      this.fullscreenButton = document.querySelector('.fullscreen');
+      this.fullscreenButton.addEventListener('click', this.fullscreen.bind(this));
 
-      var nextButton = document.querySelector('.next');
-      nextButton.addEventListener('click', this.next());
+      this.nextButton = document.querySelector('.next');
+      this.nextButton.addEventListener('click', this.next.bind(this));
     }
 
     //Atburðir settir á eventlistener
@@ -244,15 +245,14 @@ var Video = function () {
   }, {
     key: 'playpause',
     value: function playpause() {
+      console.log(this.video);
       if (this.video.paused == true) {
         this.video.play();
-        var button = document.querySelector('.pause');
-        button.src = 'img/pause.svg';
+        this.playButton.src = 'img/pause.svg';
         //þarf líka að taka af overlay hérna
       } else {
         this.video.pause();
-        var _button = document.querySelector('.play');
-        _button.src = 'img/play.svg';
+        this.playButton.src = 'img/play.svg';
         //setja overlay
       }
     }
@@ -261,27 +261,24 @@ var Video = function () {
     value: function mute() {
       if (this.video.muted == false) {
         this.video.muted = true;
-        var button = document.querySelector('.mute');
-        button.src = 'img/unmute.svg';
+        this.muteButton.src = 'img/unmute.svg';
       } else {
         this.video.muted = false;
-        var _button2 = document.querySelector('.unmute');
-        _button2.src = 'img/mute.svg';
+        this.muteButton.src = 'img/mute.svg';
       }
     }
 
     //gæti mögulegt þurft að kveikja og slökkva á default controls herna qrueirgniuergnoano
-    //þarf greinilega fullt af mismunandi gerðum eftir browser
 
   }, {
     key: 'fullscreen',
     value: function fullscreen() {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-      } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        }
+      if (this.video.requestFullscreen) {
+        this.video.requestFullscreen();
+      } else if (this.video.mozRequestFullScreen) {
+        this.video.mozRequestFullScreen();
+      } else if (this.video.webkitRequestFullscreen) {
+        this.video.webkitRequestFullscreen();
       }
     }
   }, {
