@@ -15,7 +15,7 @@ class Video {
         throw new Error('Something went wrong on api server!');
       })
       .then((data) => {
-      this.createButtons();
+        this.createButtons();
       })
       .catch((error) => {
         console.error(error); // eslint-disable-line
@@ -23,84 +23,82 @@ class Video {
   }
 
 
-//Controls búin til og event listener settur á þá
+  //Controls búin til og event listener settur á þá
 
-createButtons() {
+  createButtons() {
 
-  const backButton = document.querySelector('.back');
-  backButton.addEventListener('click', this.back());
+    const backButton = document.querySelector('.back');
+    backButton.addEventListener('click', this.back());
 
-  const playButton = document.querySelector('.play');
-  playButton.addEventListener('click', this.playpause());
+    const playButton = document.querySelector('.play');
+    playButton.addEventListener('click', this.playpause());
 
-  const muteButton = document.querySelector('.mute');
-  muteButton.addEventListener('click', this.mute());
+    const muteButton = document.querySelector('.mute');
+    muteButton.addEventListener('click', this.mute());
 
-  const fullscreenButton = document.querySelector('.fullscreen');
-  fullscreenButton.addEventListener('click', this.fullscreen());
-  
-  const nextButton = document.querySelector('.next');
-  nextButton.addEventListener('click', this.next());
-}
+    const fullscreenButton = document.querySelector('.fullscreen');
+    fullscreenButton.addEventListener('click', this.fullscreen());
 
-//Atburðir settir á eventlistener
-
-playpause() {
-  if (video.paused == true) {
-    video.play();
-    const button = document.querySelector('.pause');
-    button.src = 'img/pause.svg'
-    //þarf líka að taka af overlay hérna
-  } else {
-    video.pause();
-    const button = document.querySelector('.play');
-    button.src = 'img/play.svg'
-    //setja overlay
+    const nextButton = document.querySelector('.next');
+    nextButton.addEventListener('click', this.next());
   }
-}
 
-mute() {
-  if (video.muted == false) {
-    video.muted = true;
-    const button = document.querySelector('.mute');
-    button.classList.remove('mute');
-    button.classList.add('unmute');
-  } else {
-    video.muted = false;
-    const button = document.querySelector('.unmute');
-    button.classList.remove('unmute');
-    button.classList.add('mute');
-  }
-}
+  //Atburðir settir á eventlistener
 
-
-//gæti mögulegt þurft að kveikja og slökkva á default controls herna qrueirgniuergnoano
-//þarf greinilega fullt af mismunandi gerðum eftir browser
-fullscreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-  } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
+  playpause() {
+    if (video.paused == true) {
+      video.play();
+      const button = document.querySelector('.pause');
+      button.src = 'img/pause.svg'
+      //þarf líka að taka af overlay hérna
+    } else {
+      video.pause();
+      const button = document.querySelector('.play');
+      button.src = 'img/play.svg'
+      //setja overlay
     }
   }
-}
 
-back() {
-  if (video.currenttime <= 3) {
-    video.currenttime = 0;
-  } else {
-    video.currenttime -= 3;
+  mute() {
+    if (video.muted == false) {
+      video.muted = true;
+      const button = document.querySelector('.mute');
+      button.src = 'img/unmute.svg'
+    } else {
+      video.muted = false;
+      const button = document.querySelector('.unmute');
+      button.src = 'img/mute.svg'
+    }
   }
-}
 
-next() {
-  if ((video.duration - video.currenttime) <= 3) {
-    video.currenttime = video.duration;
-  } else {
-    video.currenttime += 3;
+
+  //gæti mögulegt þurft að kveikja og slökkva á default controls herna qrueirgniuergnoano
+  //þarf greinilega fullt af mismunandi gerðum eftir browser
+  fullscreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
   }
-}
+
+  back() {
+    if (video.currenttime <= 3) {
+      video.currenttime = 0;
+    } else {
+      video.currenttime -= 3;
+    }
+  }
+
+  next() {
+    if ((video.duration - video.currenttime) <= 3) {
+      video.currenttime = video.duration;
+    } else {
+      video.currenttime += 3;
+    }
+  }
 }
 
 
