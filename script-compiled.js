@@ -88,18 +88,56 @@ var Index = function () {
       var video = document.createElement('li');
       video.classList.add('categories-list-item');
       div.appendChild(poster);
+      div.appendChild(this.getDuration(data.duration));
+
       video.appendChild(div);
-      //vantar time
       video.appendChild(h3);
+      video.appendChild(this.getCreated(data.created));
 
       return video;
     }
   }, {
-    key: 'formatDuration',
-    value: function formatDuration(duration) {}
+    key: 'getDuration',
+    value: function getDuration(duration) {
+      var min = Math.floor(duration / 60);
+      var sec = duration - min * 60;
+      var dur = min + ':' + ('0' + sec).slice(-2);
+      var div = document.createElement(div);
+      div.classList.add('time');
+      div.appendChild(document.createTextNode(dur));
+      return div;
+    }
   }, {
-    key: 'formatCreated',
-    value: function formatCreated(created) {}
+    key: 'getCreated',
+    value: function getCreated(created) {
+      var secSince = new Date() - created;
+      var sec = secSince / 1000;
+      var hours = Math.floor(sec / 3600);
+      var days = Math.floor(hours / 24);
+      var weeks = Math.floor(days / 7);
+      var months = Math.floor(days / 30);
+      var years = Math.floor(days / 365);
+
+      var time = '';
+
+      if (days > 365) {
+        time = 'Fyrir ' + years + ' ári/árum síðan';
+      } else if (days > 30) {
+        time = 'Fyrir ' + months + ' mánuði/mánuðum síðan';
+      } else if (days > 7) {
+        time = 'Fyrir ' + weeks + ' viku/vikum síðan';
+      } else if (hours > 24) {
+        time = 'Fyrir ' + days + ' degi/dögum síðan';
+      } else {
+        time = 'Fyrir ' + hours + ' klukkustund/klukkustundum síðan';
+      }
+
+      var h3 = document.createElement('h3');
+      h3.classList.add('heading-date');
+      h3.appendChild(document.createTextNode(time));
+
+      return h3;
+    }
   }]);
 
   return Index;
