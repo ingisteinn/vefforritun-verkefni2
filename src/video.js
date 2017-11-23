@@ -1,9 +1,10 @@
 class Video {
   constructor() {
-    this.container = document.querySelector('.categories');
+    this.container = document.querySelector('.player');
   }
 
   load() {
+    this.getVideo(1);
     const request = new Request('videos.json', {
       method: 'GET'
     });
@@ -22,8 +23,27 @@ class Video {
       });
   }
 
+  
+  getVideo(data) {
+    const id = window.location.search.split('=')[1];
+    console.log(id);
+    data.videos.forEach((video) => {
+        
+          if (id === video.id) {
+            var 
+            var videoContainer = document.createElement('div');
+            videoContainer.classList.add('player-container-video')
+            this.video = ;
+          }
+      else{
+        //error message, ekki til...
+      }
+        
+      });
+  }
 
   //Controls búin til og event listener settur á þá
+  
 
   createButtons() {
 

@@ -111,6 +111,7 @@ var Video = function () {
     value: function load() {
       var _this = this;
 
+      this.getVideo(1);
       var request = new Request('videos.json', {
         method: 'GET'
       });
@@ -125,8 +126,15 @@ var Video = function () {
         console.error(error); // eslint-disable-line
       });
     }
+  }, {
+    key: 'getVideo',
+    value: function getVideo(data) {
+      var id = window.location.search.split('=')[1];
+      console.log(id);
+    }
 
     //Controls búin til og event listener settur á þá
+
 
   }, {
     key: 'createButtons',
@@ -171,13 +179,11 @@ var Video = function () {
       if (video.muted == false) {
         video.muted = true;
         var button = document.querySelector('.mute');
-        button.classList.remove('mute');
-        button.classList.add('unmute');
+        button.src = 'img/unmute.svg';
       } else {
         video.muted = false;
         var _button2 = document.querySelector('.unmute');
-        _button2.classList.remove('unmute');
-        _button2.classList.add('mute');
+        _button2.src = 'img/mute.svg';
       }
     }
 
