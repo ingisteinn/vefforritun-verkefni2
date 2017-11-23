@@ -92,6 +92,8 @@ class Index {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const index = new Index();
-  index.load();
+  if(document.querySelector('.categories')) {
+    const index = new Index();
+    index.load();
+  }
 });
