@@ -28,6 +28,12 @@
   padding-top: 0.5em;
   font-weight: 500;
 }
+  
+  &-big{
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
 }
 
 hr{
@@ -98,4 +104,59 @@ hr{
     font-size: 1em;
 }
    
+}
+
+
+.player{
+  
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-basis: auto;
+  
+  
+  &-controls{
+    display: flex;
+    justify-content: center;
+    
+    
+    &-images{
+      width: 100%;
+      height: 100%;
+      max-width: 5em;
+      margin: 1em;
+    }
+  }
+    
+    &-container{
+      width:100%;
+      height: 100%;
+      padding: 1em;
+      
+      &-overlay{
+      //background-image:url("img/play.svg");
+      //max-width: 5em;
+     // position: absolute;
+        
+        
+        
+      }
+      
+      
+      &-video{
+        width:100%;
+        position: relative;
+      }
+    }
+  
+  &-goback{
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  
+  
+  
+  
+  
 }
