@@ -58,16 +58,17 @@ function playpause() {
   }
 }
 
-function mute();
-if (video.muted == false) {
-  video.muted = true;
-  const button = document.querySelector('.button-controls-images-mute');
-  button.classList.removeChild('button-controls-images-mute');
-  button.classList.appendChild('button-controls-images-unmute');
-} else {
-  video.muted = false;
-  const button = document.querySelector('.button-controls-images-unmute');
-  button.classList.removeChild('button-controls-images-unmute')
+function mute() {
+  if (video.muted == false) {
+    video.muted = true;
+    const button = document.querySelector('.button-controls-images-mute');
+    button.classList.removeChild('button-controls-images-mute');
+    button.classList.appendChild('button-controls-images-unmute');
+  } else {
+    video.muted = false;
+    const button = document.querySelector('.button-controls-images-unmute');
+    button.classList.removeChild('button-controls-images-unmute')
+  }
 }
 
 
@@ -97,10 +98,6 @@ function next() {
   } else {
     video.currenttime += 3;
   }
-}
-
-}
-
 }
 
 
