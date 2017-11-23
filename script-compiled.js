@@ -42,13 +42,14 @@ var Index = function () {
 
       this.categories.forEach(function (data) {
         var section = document.createElement('section');
-        section.classList.add('row');
+        section.classList.add('categories-section');
 
         var catTitle = document.createElement('h2');
+        catTitle.classList.add('heading-two');
         catTitle.appendChild(document.createTextNode(data.title));
 
-        var videosContainer = document.createElement('div');
-        videosContainer.classList.add('categories-videos');
+        var videosContainer = document.createElement('ul');
+        videosContainer.classList.add('categories-list');
 
         section.appendChild(catTitle);
         section.appendChild(videosContainer);
@@ -60,22 +61,37 @@ var Index = function () {
             }
           });
         });
+        section.appendChild(document.createElement('hr'));
         _this2.container.appendChild(section);
       });
     }
   }, {
     key: 'getVideo',
     value: function getVideo(data) {
+      var div = document.createElement('div');
+      div.classList.add('categories-img');
+      var h3 = document.createElement('h3');
       var poster = document.createElement('a');
       poster.href = 'video.html?id=' + data.id;
       var title = document.createElement('a');
       title.href = 'video.html?id=' + data.id;
+      title.appendChild(document.createTextNode(data.title));
+      h3.classList.add('heading-three');
+      h3.appendChild(title);
 
-      var video = document.createElement('video-container');
-      video.appendChild(poster);
-      video.appendChild(title);
+      var img = document.createElement('img');
+      img.src = data.poster;
+      img.classList.add('image');
 
-      title.innerHTML = data.title;
+      poster.appendChild(img);
+
+      var video = document.createElement('li');
+      video.classList.add('categories-list-item');
+      div.appendChild(poster);
+      video.appendChild(div);
+      //vantar time
+      video.appendChild(h3);
+
       return video;
     }
   }, {
