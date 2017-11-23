@@ -1,6 +1,6 @@
 class Index {
-  constructor() {
-    this.container = document.querySelector('.categories');
+  constructor(catContainer) {
+    this.container = catContainer;
   }
 
   load() {
@@ -92,8 +92,9 @@ class Index {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  if(document.querySelector('.categories')) {
-    const index = new Index();
+  const catContainer = document.querySelector('.categories');
+  if(catContainer) {
+    const index = new Index(catContainer);
     index.load();
   }
 });

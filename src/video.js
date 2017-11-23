@@ -1,6 +1,6 @@
 class Video {
-  constructor() {
-    this.container = document.querySelector('.player');
+  constructor(playerContainer) {
+    this.container = playerContainer;
   }
 
   load() {
@@ -134,6 +134,9 @@ class Video {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const video = new Video();
-  video.load();
+  const playerContainer = document.querySelector('.player');
+  if(playerContainer) {
+    const video = new Video(playerContainer);
+    video.load();
+  }
 });

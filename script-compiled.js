@@ -5,10 +5,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Index = function () {
-  function Index() {
+  function Index(catContainer) {
     _classCallCheck(this, Index);
 
-    this.container = document.querySelector('.categories');
+    this.container = catContainer;
   }
 
   _createClass(Index, [{
@@ -106,8 +106,9 @@ var Index = function () {
 }();
 
 document.addEventListener('DOMContentLoaded', function () {
-  if (document.querySelector('.categories')) {
-    var index = new Index();
+  var catContainer = document.querySelector('.categories');
+  if (catContainer) {
+    var index = new Index(catContainer);
     index.load();
   }
 });
@@ -118,10 +119,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Video = function () {
-  function Video() {
+  function Video(playerContainer) {
     _classCallCheck(this, Video);
 
-    this.container = document.querySelector('.player');
+    this.container = playerContainer;
   }
 
   _createClass(Video, [{
@@ -269,8 +270,11 @@ var Video = function () {
 }();
 
 document.addEventListener('DOMContentLoaded', function () {
-  var video = new Video();
-  video.load();
+  var playerContainer = document.querySelector('.player');
+  if (playerContainer) {
+    var video = new Video(playerContainer);
+    video.load();
+  }
 });
 
 //# sourceMappingURL=script-compiled.js.map
