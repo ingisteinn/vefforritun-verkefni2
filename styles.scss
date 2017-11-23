@@ -26,6 +26,10 @@ main{
     font-size: 1em;
 }
 
+a {
+  color: white;
+  text-decoration: none;
+}
 
 @import "scss/index";
 @import "scss/video";

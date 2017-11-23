@@ -42,13 +42,14 @@ var Index = function () {
 
       this.categories.forEach(function (data) {
         var section = document.createElement('section');
-        section.classList.add('row');
+        section.classList.add('categories-section');
 
         var catTitle = document.createElement('h2');
+        catTitle.classList.add('heading-two');
         catTitle.appendChild(document.createTextNode(data.title));
 
-        var videosContainer = document.createElement('div');
-        videosContainer.classList.add('categories-videos');
+        var videosContainer = document.createElement('ul');
+        videosContainer.classList.add('categories-list');
 
         section.appendChild(catTitle);
         section.appendChild(videosContainer);
@@ -60,22 +61,37 @@ var Index = function () {
             }
           });
         });
+        section.appendChild(document.createElement('hr'));
         _this2.container.appendChild(section);
       });
     }
   }, {
     key: 'getVideo',
     value: function getVideo(data) {
+      var div = document.createElement('div');
+      div.classList.add('categories-img');
+      var h3 = document.createElement('h3');
       var poster = document.createElement('a');
       poster.href = 'video.html?id=' + data.id;
       var title = document.createElement('a');
       title.href = 'video.html?id=' + data.id;
+      title.appendChild(document.createTextNode(data.title));
+      h3.classList.add('heading-three');
+      h3.appendChild(title);
 
-      var video = document.createElement('video-container');
-      video.appendChild(poster);
-      video.appendChild(title);
+      var img = document.createElement('img');
+      img.src = data.poster;
+      img.classList.add('image');
 
-      title.innerHTML = data.title;
+      poster.appendChild(img);
+
+      var video = document.createElement('li');
+      video.classList.add('categories-list-item');
+      div.appendChild(poster);
+      video.appendChild(div);
+      //vantar time
+      video.appendChild(h3);
+
       return video;
     }
   }, {
@@ -103,7 +119,7 @@ var Video = function () {
   function Video() {
     _classCallCheck(this, Video);
 
-    this.container = document.querySelector('.categories');
+    this.container = document.querySelector('.player');
   }
 
   _createClass(Video, [{
@@ -111,7 +127,6 @@ var Video = function () {
     value: function load() {
       var _this = this;
 
-      this.getVideo(1);
       var request = new Request('videos.json', {
         method: 'GET'
       });
@@ -121,6 +136,7 @@ var Video = function () {
         }
         throw new Error('Something went wrong on api server!');
       }).then(function (data) {
+        _this.getVideo(data);
         _this.createButtons();
       }).catch(function (error) {
         console.error(error); // eslint-disable-line
@@ -129,8 +145,26 @@ var Video = function () {
   }, {
     key: 'getVideo',
     value: function getVideo(data) {
+      var _this2 = this;
+
       var id = window.location.search.split('=')[1];
       console.log(id);
+      data.videos.forEach(function (video) {
+
+        if (id === video.id) {
+
+          var title = document.createElement('h1');
+          title.appendChild(document.createTextNode(data.title));
+          title.classList.add('heading-big');
+
+          _this2.video = document.createElement('video');
+          _this2.video.classList.add('player-container-video');
+          _this2.video.src = data.video;
+          _this2.video.appendChild(video);
+        } else {
+          //error message, ekki til...
+        }
+      });
     }
 
     //Controls búin til og event listener settur á þá
@@ -161,13 +195,13 @@ var Video = function () {
   }, {
     key: 'playpause',
     value: function playpause() {
-      if (video.paused == true) {
-        video.play();
+      if (this.video.paused == true) {
+        this.video.play();
         var button = document.querySelector('.pause');
         button.src = 'img/pause.svg';
         //þarf líka að taka af overlay hérna
       } else {
-        video.pause();
+        this.video.pause();
         var _button = document.querySelector('.play');
         _button.src = 'img/play.svg';
         //setja overlay
@@ -176,12 +210,12 @@ var Video = function () {
   }, {
     key: 'mute',
     value: function mute() {
-      if (video.muted == false) {
-        video.muted = true;
+      if (this.video.muted == false) {
+        this.video.muted = true;
         var button = document.querySelector('.mute');
         button.src = 'img/unmute.svg';
       } else {
-        video.muted = false;
+        this.video.muted = false;
         var _button2 = document.querySelector('.unmute');
         _button2.src = 'img/mute.svg';
       }
@@ -204,19 +238,19 @@ var Video = function () {
   }, {
     key: 'back',
     value: function back() {
-      if (video.currenttime <= 3) {
-        video.currenttime = 0;
+      if (this.video.currentTime <= 3) {
+        this.video.currentTime = 0;
       } else {
-        video.currenttime -= 3;
+        this.video.currentTime -= 3;
       }
     }
   }, {
     key: 'next',
     value: function next() {
-      if (video.duration - video.currenttime <= 3) {
-        video.currenttime = video.duration;
+      if (this.video.duration - this.video.currentTime <= 3) {
+        this.video.currentTime = this.video.duration;
       } else {
-        video.currenttime += 3;
+        this.video.currentTime += 3;
       }
     }
   }]);
