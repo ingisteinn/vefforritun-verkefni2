@@ -102,7 +102,7 @@ var Index = function () {
       var min = Math.floor(duration / 60);
       var sec = duration - min * 60;
       var dur = min + ':' + ('0' + sec).slice(-2);
-      var div = document.createElement(div);
+      var div = document.createElement('div');
       div.classList.add('time');
       div.appendChild(document.createTextNode(dur));
       return div;
@@ -121,15 +121,15 @@ var Index = function () {
       var time = '';
 
       if (days > 365) {
-        time = 'Fyrir ' + years + ' ári/árum síðan';
+        time = 'Fyrir ' + years + ' \xE1ri/\xE1rum s\xED\xF0an';
       } else if (days > 30) {
-        time = 'Fyrir ' + months + ' mánuði/mánuðum síðan';
+        time = 'Fyrir ' + months + ' m\xE1nu\xF0i/m\xE1nu\xF0um s\xED\xF0an';
       } else if (days > 7) {
-        time = 'Fyrir ' + weeks + ' viku/vikum síðan';
+        time = 'Fyrir ' + weeks + ' viku/vikum s\xED\xF0an';
       } else if (hours > 24) {
-        time = 'Fyrir ' + days + ' degi/dögum síðan';
+        time = 'Fyrir ' + days + ' degi/d\xF6gum s\xED\xF0an';
       } else {
-        time = 'Fyrir ' + hours + ' klukkustund/klukkustundum síðan';
+        time = 'Fyrir ' + hours + ' klukkustund/klukkustundum s\xED\xF0an';
       }
 
       var h3 = document.createElement('h3');

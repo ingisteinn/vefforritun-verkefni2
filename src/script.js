@@ -64,19 +64,18 @@ class Index {
     title.appendChild(document.createTextNode(data.title));
     h3.classList.add('heading-three');
     h3.appendChild(title);
-    
-    
+
     const img = document.createElement('img');
     img.src = data.poster;
     img.classList.add('image');
-    
+
     poster.appendChild(img);
-    
+
     const video = document.createElement('li');
     video.classList.add('categories-list-item');
     div.appendChild(poster);
     div.appendChild(this.getDuration(data.duration));
-    
+
     video.appendChild(div);
     video.appendChild(h3);
     video.appendChild(this.getCreated(data.created));
@@ -87,8 +86,8 @@ class Index {
   getDuration(duration) {
     const min = Math.floor(duration / 60);
     const sec = duration - (min * 60);
-    const dur = min + ':' + ('0' + sec).slice(-2);
-    const div = document.createElement(div);
+    const dur = `${min}:${(`0${sec}`).slice(-2)}`;
+    const div = document.createElement('div');
     div.classList.add('time');
     div.appendChild(document.createTextNode(dur));
     return div;
@@ -102,32 +101,32 @@ class Index {
     const weeks = Math.floor(days / 7);
     const months = Math.floor(days / 30);
     const years = Math.floor(days / 365);
-    
+
     let time = '';
-    
-    if(days > 365) {
-      time = 'Fyrir ' + years + ' ári/árum síðan';
-    } else if(days > 30) {
-      time = 'Fyrir ' + months + ' mánuði/mánuðum síðan';
-    } else if(days > 7) {
-      time = 'Fyrir ' + weeks + ' viku/vikum síðan';
-    } else if(hours > 24) {
-      time = 'Fyrir ' + days + ' degi/dögum síðan';
+
+    if (days > 365) {
+      time = `Fyrir ${years} ári/árum síðan`;
+    } else if (days > 30) {
+      time = `Fyrir ${months} mánuði/mánuðum síðan`;
+    } else if (days > 7) {
+      time = `Fyrir ${weeks} viku/vikum síðan`;
+    } else if (hours > 24) {
+      time = `Fyrir ${days} degi/dögum síðan`;
     } else {
-      time = 'Fyrir ' + hours + ' klukkustund/klukkustundum síðan';
+      time = `Fyrir ${hours} klukkustund/klukkustundum síðan`;
     }
-    
+
     const h3 = document.createElement('h3');
     h3.classList.add('heading-date');
     h3.appendChild(document.createTextNode(time));
-    
+
     return h3;
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const catContainer = document.querySelector('.categories');
-  if(catContainer) {
+  if (catContainer) {
     const index = new Index(catContainer);
     index.load();
   }
