@@ -21,6 +21,9 @@
 &-three{
   font-size:1em;
   padding-top: 0.5em;
+    text-overflow: clip;
+    white-space: nowrap;
+  overflow: hidden;
 }
 
 &-date{
@@ -29,11 +32,6 @@
   font-weight: 500;
 }
   
-  &-big{
-    margin: auto;
-    margin-top: 1em;
-    margin-bottom: 0.5em;
-  }
 }
 
 hr{
@@ -103,73 +101,4 @@ hr{
     font-size: 1em;
 }
    
-}
-
-
-.player{
-  
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-basis: auto;
-  
-  
-  &-controls{
-    display: flex;
-    justify-content: center;
-    
-    
-    &-images{
-      width: 100%;
-      height: 100%;
-      max-width: 3em;
-      margin: 1em;
-    }
-  }
-    
-    &-container{
-      width:100%;
-      height: 100%;
-      padding: 1em;
-      
-      
-      &-overlay{   
-    position:relative;
-        cursor: pointer;
-      }
-      
-      
-      &-video{
-        width:100%;
-        position: relative;
-      }
-      
-      &-play{
-        background-image:url("img/play.svg");
-      background-repeat:no-repeat;
-    width:10%;
-    height:10%;
-    position:absolute;
-    left:0%;
-    right:0%;
-    top:0%;
-    bottom:0%;
-    margin:auto;
-    background-size:contain;
-    background-position: center;
-        
-        
-      }
-    }
-  
-  &-goback{
-    margin: auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
-  }
-  
-  
-  
-  
-  
 }
