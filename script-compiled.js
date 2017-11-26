@@ -188,33 +188,38 @@ var Video = function () {
       var _this2 = this;
 
       var id = parseInt(window.location.search.split('=')[1]);
+      var found = false;
       data.videos.forEach(function (video) {
 
         if (id === video.id) {
-
+          found = true;
           var title = document.createElement('h1');
           title.classList.add('heading-big');
           title.appendChild(document.createTextNode(video.title));
 
           var containerElement = document.createElement('div');
           containerElement.classList.add('player-container');
+          _this2.playerContainer = containerElement;
 
-          var overlayElement = document.createElement('div');
-          containerElement.classList.add('player-container-overlay');
-          //appendaaaaa
+          _this2.overlayElement = document.createElement('div');
+          _this2.overlayElement.classList.add('player-container-overlay');
 
           _this2.video = document.createElement('video');
           _this2.video.classList.add('player-container-video');
           _this2.video.src = video.video;
 
-          overlayElement.appendChild(_this2.video);
-          containerElement.appendChild(overlayElement);
+          _this2.overlayElement.appendChild(_this2.video);
+          containerElement.appendChild(_this2.overlayElement);
           _this2.container.insertBefore(containerElement, _this2.container.childNodes[0]);
           _this2.container.insertBefore(title, _this2.container.childNodes[0]);
 
           _this2.createButtons();
         }
       });
+
+      if (!found) {
+        this.container.insertBefore(document.createTextNode('Videó er ekki til'), this.container.childNodes[0]);
+      }
     }
 
     //Controls búin til og event listener settur á þá
@@ -238,6 +243,8 @@ var Video = function () {
 
       this.nextButton = document.querySelector('.next');
       this.nextButton.addEventListener('click', this.next.bind(this));
+
+      this.playerContainer.addEventListener('click', this.playpause.bind(this));
     }
 
     //Atburðir settir á eventlistener
@@ -249,10 +256,12 @@ var Video = function () {
       if (this.video.paused == true) {
         this.video.play();
         this.playButton.src = 'img/pause.svg';
+        this.overlayElement.classList.remove('player-container-overlay');
         //þarf líka að taka af overlay hérna
       } else {
         this.video.pause();
         this.playButton.src = 'img/play.svg';
+        this.overlayElement.classList.add('player-container-overlay');
         //setja overlay
       }
     }

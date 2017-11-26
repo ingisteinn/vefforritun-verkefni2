@@ -25,33 +25,38 @@ class Video {
 
   getVideo(data) {
     const id = parseInt(window.location.search.split('=')[1]);
+    let found = false;
     data.videos.forEach((video) => {
 
       if (id === video.id) {
-
+        found = true;
         const title = document.createElement('h1');
         title.classList.add('heading-big');
         title.appendChild(document.createTextNode(video.title));
 
         const containerElement = document.createElement('div');
         containerElement.classList.add('player-container');
-
-        const overlayElement = document.createElement('div');
-        containerElement.classList.add('player-container-overlay');
-        //appendaaaaa
+        this.playerContainer = containerElement;
+        
+        this.overlayElement = document.createElement('div');
+        this.overlayElement.classList.add('player-container-overlay');
 
         this.video = document.createElement('video');
         this.video.classList.add('player-container-video');
         this.video.src = video.video;
         
-        overlayElement.appendChild(this.video);
-        containerElement.appendChild(overlayElement);
+        this.overlayElement.appendChild(this.video);
+        containerElement.appendChild(this.overlayElement);
         this.container.insertBefore(containerElement, this.container.childNodes[0]);
         this.container.insertBefore(title, this.container.childNodes[0]);
         
         this.createButtons();
       }
     });
+    
+    if(!found) {
+      this.container.insertBefore(document.createTextNode('Videó er ekki til'), this.container.childNodes[0]);
+    }
   }
 
   //Controls búin til og event listener settur á þá
@@ -73,6 +78,8 @@ class Video {
 
     this.nextButton = document.querySelector('.next');
     this.nextButton.addEventListener('click', this.next.bind(this));
+    
+    this.playerContainer.addEventListener('click', this.playpause.bind(this));
   }
 
   //Atburðir settir á eventlistener
@@ -82,10 +89,12 @@ class Video {
     if (this.video.paused == true) {
       this.video.play();
       this.playButton.src = 'img/pause.svg'
+      this.overlayElement.classList.remove('player-container-overlay');
       //þarf líka að taka af overlay hérna
     } else {
       this.video.pause();
       this.playButton.src = 'img/play.svg'
+      this.overlayElement.classList.add('player-container-overlay');
       //setja overlay
     }
   }
