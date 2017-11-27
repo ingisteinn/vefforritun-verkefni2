@@ -5,7 +5,6 @@
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 1.4em;
-    //border: none; eru þessir tveir border á eh egill?
   }
 
   &-two {
@@ -13,7 +12,6 @@
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 1.5em;
-   // border: none;
   }
 
   &-three {
@@ -31,23 +29,6 @@
   }
 }
 
-hr {
-  width: 70%;
-  margin: auto;
-  margin-top: 2em;
-  margin-bottom: 2em;
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-.button {
-  // ekki búinn með takkann
-}
-
-.button:hover {
-  background-color: #333;
-  // þarf hover?
-}
-
 .categories {
   width: 100%;
 
@@ -57,7 +38,6 @@ hr {
     width: 100%;
 
     &-item {
-      // höfum aðgang að mixin hér þar sem grid var importað á undan í styles.scss
       display: flex;
       width: 100%;
       padding: 0.5em;

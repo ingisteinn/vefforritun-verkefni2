@@ -21,13 +21,13 @@ class Index {
         console.error(error); // eslint-disable-line
       });
   }
-  
+
   empty(el) {
     while (el.firstChild) {
       el.removeChild(el.firstChild);
     }
   }
-  
+
   parseData(data) {
     this.videos = data.videos;
     this.categories = data.categories;
@@ -112,16 +112,26 @@ class Index {
 
     let time = '';
 
-    if (days > 365) {
-      time = `Fyrir ${years} ári/árum síðan`;
-    } else if (days > 30) {
-      time = `Fyrir ${months} mánuði/mánuðum síðan`;
-    } else if (days > 7) {
-      time = `Fyrir ${weeks} viku/vikum síðan`;
-    } else if (hours > 24) {
-      time = `Fyrir ${days} degi/dögum síðan`;
+    if (years === 1) {
+      time = `Fyrir ${years} ári síðan`;
+    } else if (years > 1) {
+      time = `Fyrir ${years} árum síðan`;
+    } else if (months === 1) {
+      time = `Fyrir ${months} mánuði síðan`;
+    } else if (months > 1) {
+      time = `Fyrir ${months} mánuðum síðan`;
+    } else if (weeks === 1) {
+      time = `Fyrir ${weeks} viku síðan`;
+    } else if (weeks > 1) {
+      time = `Fyrir ${weeks} vikum síðan`;
+    } else if (days === 1) {
+      time = `Fyrir ${days} degi síðan`;
+    } else if (days > 1) {
+      time = `Fyrir ${days} dögum síðan`;
+    } else if (hours === 1) {
+      time = `Fyrir ${hours} klukkustund síðan`;
     } else {
-      time = `Fyrir ${hours} klukkustund/klukkustundum síðan`;
+      time = `Fyrir ${hours} klukkustundum síðan`;
     }
 
     const h3 = document.createElement('h3');

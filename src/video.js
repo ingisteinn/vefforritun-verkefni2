@@ -23,7 +23,7 @@ class Video {
         console.error(error); // eslint-disable-line
       });
   }
-  
+
   getVideo(data) {
     const id = parseInt(window.location.search.split('=')[1], 10);
     let found = false;

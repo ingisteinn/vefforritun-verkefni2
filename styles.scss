@@ -33,5 +33,13 @@ a { /* stylelint-disable-line */
   text-decoration: none;
 }
 
+hr { /* stylelint-disable-line */
+  width: 70%;
+  margin: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-color: #eee;
+}
+
 @import "scss/index";
 @import "scss/video";

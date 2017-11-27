@@ -129,16 +129,26 @@ var Index = function () {
 
       var time = '';
 
-      if (days > 365) {
-        time = 'Fyrir ' + years + ' \xE1ri/\xE1rum s\xED\xF0an';
-      } else if (days > 30) {
-        time = 'Fyrir ' + months + ' m\xE1nu\xF0i/m\xE1nu\xF0um s\xED\xF0an';
-      } else if (days > 7) {
-        time = 'Fyrir ' + weeks + ' viku/vikum s\xED\xF0an';
-      } else if (hours > 24) {
-        time = 'Fyrir ' + days + ' degi/d\xF6gum s\xED\xF0an';
+      if (years === 1) {
+        time = 'Fyrir ' + years + ' \xE1ri s\xED\xF0an';
+      } else if (years > 1) {
+        time = 'Fyrir ' + years + ' \xE1rum s\xED\xF0an';
+      } else if (months === 1) {
+        time = 'Fyrir ' + months + ' m\xE1nu\xF0i s\xED\xF0an';
+      } else if (months > 1) {
+        time = 'Fyrir ' + months + ' m\xE1nu\xF0um s\xED\xF0an';
+      } else if (weeks === 1) {
+        time = 'Fyrir ' + weeks + ' viku s\xED\xF0an';
+      } else if (weeks > 1) {
+        time = 'Fyrir ' + weeks + ' vikum s\xED\xF0an';
+      } else if (days === 1) {
+        time = 'Fyrir ' + days + ' degi s\xED\xF0an';
+      } else if (days > 1) {
+        time = 'Fyrir ' + days + ' d\xF6gum s\xED\xF0an';
+      } else if (hours === 1) {
+        time = 'Fyrir ' + hours + ' klukkustund s\xED\xF0an';
       } else {
-        time = 'Fyrir ' + hours + ' klukkustund/klukkustundum s\xED\xF0an';
+        time = 'Fyrir ' + hours + ' klukkustundum s\xED\xF0an';
       }
 
       var h3 = document.createElement('h3');
