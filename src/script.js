@@ -1,6 +1,7 @@
 class Index {
   constructor(catContainer) {
     this.container = catContainer;
+    this.container.appendChild(document.createTextNode('Sæki gögn...'));
   }
 
   load() {
@@ -13,13 +14,20 @@ class Index {
         throw new Error('Something went wrong on api server!');
       })
       .then((data) => {
+        this.empty(this.container);
         this.parseData(data);
       })
       .catch((error) => {
         console.error(error); // eslint-disable-line
       });
   }
-
+  
+  empty(el) {
+    while (el.firstChild) {
+      el.removeChild(el.firstChild);
+    }
+  }
+  
   parseData(data) {
     this.videos = data.videos;
     this.categories = data.categories;

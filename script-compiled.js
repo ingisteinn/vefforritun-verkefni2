@@ -9,6 +9,7 @@ var Index = function () {
     _classCallCheck(this, Index);
 
     this.container = catContainer;
+    this.container.appendChild(document.createTextNode('Sæki gögn...'));
   }
 
   _createClass(Index, [{
@@ -23,10 +24,18 @@ var Index = function () {
         }
         throw new Error('Something went wrong on api server!');
       }).then(function (data) {
+        _this.empty(_this.container);
         _this.parseData(data);
       }).catch(function (error) {
         console.error(error); // eslint-disable-line
       });
+    }
+  }, {
+    key: 'empty',
+    value: function empty(el) {
+      while (el.firstChild) {
+        el.removeChild(el.firstChild);
+      }
     }
   }, {
     key: 'parseData',
@@ -161,6 +170,9 @@ var Video = function () {
     _classCallCheck(this, Video);
 
     this.container = playerContainer;
+    this.loadMsgContainer = document.querySelector('.loadMsg');
+    this.loadMsg = document.createTextNode('Sæki gögn...');
+    this.loadMsgContainer.appendChild(this.loadMsg);
   }
 
   _createClass(Video, [{
@@ -175,6 +187,7 @@ var Video = function () {
         }
         throw new Error('Something went wrong on api server!');
       }).then(function (data) {
+        _this.loadMsgContainer.removeChild(_this.loadMsg);
         _this.getVideo(data);
       }).catch(function (error) {
         console.error(error); // eslint-disable-line

@@ -1,6 +1,9 @@
 class Video {
   constructor(playerContainer) {
     this.container = playerContainer;
+    this.loadMsgContainer = document.querySelector('.loadMsg');
+    this.loadMsg = document.createTextNode('Sæki gögn...');
+    this.loadMsgContainer.appendChild(this.loadMsg);
   }
 
   load() {
@@ -13,14 +16,14 @@ class Video {
         throw new Error('Something went wrong on api server!');
       })
       .then((data) => {
+        this.loadMsgContainer.removeChild(this.loadMsg);
         this.getVideo(data);
       })
       .catch((error) => {
         console.error(error); // eslint-disable-line
       });
   }
-
-
+  
   getVideo(data) {
     const id = parseInt(window.location.search.split('=')[1], 10);
     let found = false;
