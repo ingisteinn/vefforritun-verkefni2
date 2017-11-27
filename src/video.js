@@ -22,7 +22,7 @@ class Video {
 
 
   getVideo(data) {
-    const id = parseInt("window.location.search.split('=')[1]", 10);
+    const id = parseInt(window.location.search.split('=')[1], 10);
     let found = false;
     data.videos.forEach((video) => {
       if (id === video.id) {

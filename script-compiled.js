@@ -168,9 +168,7 @@ var Video = function () {
     value: function load() {
       var _this = this;
 
-      var request = new Request('videos.json', {
-        method: 'GET'
-      });
+      var request = new Request('videos.json', { method: 'GET' });
       fetch(request).then(function (response) {
         if (response.status === 200) {
           return response.json();
@@ -187,10 +185,9 @@ var Video = function () {
     value: function getVideo(data) {
       var _this2 = this;
 
-      var id = parseInt(window.location.search.split('=')[1]);
+      var id = parseInt(window.location.search.split('=')[1], 10);
       var found = false;
       data.videos.forEach(function (video) {
-
         if (id === video.id) {
           found = true;
           var title = document.createElement('h1');
@@ -222,13 +219,12 @@ var Video = function () {
       }
     }
 
-    //Controls búin til og event listener settur á þá
+    // Controls búin til og event listener settur á þá
 
 
   }, {
     key: 'createButtons',
     value: function createButtons() {
-
       this.backButton = document.querySelector('.back');
       this.backButton.addEventListener('click', this.back.bind(this));
 
@@ -247,13 +243,12 @@ var Video = function () {
       this.playerContainer.addEventListener('click', this.playpause.bind(this));
     }
 
-    //Atburðir settir á eventlistener
+    // Atburðir settir á eventlistener
 
   }, {
     key: 'playpause',
     value: function playpause() {
-      console.log(this.video);
-      if (this.video.paused == true) {
+      if (this.video.paused === true) {
         this.video.play();
         this.playButton.src = 'img/pause.svg';
         this.overlayElement.classList.remove('player-container-overlay');
@@ -266,7 +261,7 @@ var Video = function () {
   }, {
     key: 'mute',
     value: function mute() {
-      if (this.video.muted == false) {
+      if (this.video.muted === false) {
         this.video.muted = true;
         this.muteButton.src = 'img/unmute.svg';
       } else {
