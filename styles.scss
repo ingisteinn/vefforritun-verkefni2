@@ -1,33 +1,37 @@
-/* setjum box-sizing: border-box; á allt */
-/*þarf þetta?*/
+// setjum box-sizing: border-box; á allt
+
+// þarf þetta?
+
 html {
   box-sizing: border-box;
-  font-size: 16px;
-  color: rgba(255, 255, 255, 1);
   padding: 0.5em;
   font-family: Arial;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 1);
 }
 
-*, *:before, *:after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 
-  /* fjarlægjum margin og padding */
-  margin: 0;
+  // fjarlægjum margin og padding
   padding: 0;
-  
-  /*veit ekki alveg hvort þurfi*/
+  margin: 0;
+
+  // veit ekki alveg hvort þurfi
 }
 
 body {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-main{
-    font-size: 1em;
+main {
+  font-size: 1em;
 }
 
 a {
-  color: white;
+  color: #fff;
   text-decoration: none;
 }
 
