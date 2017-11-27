@@ -76,7 +76,16 @@ class Video {
     this.nextButton.addEventListener('click', this.next.bind(this));
 
     this.playerContainer.addEventListener('click', this.playpause.bind(this));
+
+    this.video.addEventListener('ended', this.end.bind(this));
   }
+
+  end() {
+    this.video.currentTime = 0;
+    this.playButton.src = 'img/play.svg';
+    this.overlayElement.classList.add('player-container-overlay');
+  }
+
 
   // Atburðir settir á eventlistener
   playpause() {
