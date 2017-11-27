@@ -219,8 +219,8 @@ var Video = function () {
           _this2.video.src = video.video;
           _this2.video.poster = video.poster;
 
-          _this2.overlayElement.appendChild(_this2.video);
           containerElement.appendChild(_this2.overlayElement);
+          containerElement.appendChild(_this2.video);
           _this2.container.insertBefore(containerElement, _this2.container.childNodes[0]);
           _this2.container.insertBefore(title, _this2.container.childNodes[0]);
 

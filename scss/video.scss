@@ -23,8 +23,9 @@
   }
 
   &-container {
-    width: 100%;
     max-width: 60em;
+    position: relative;
+    overflow: hidden;
 
     &-overlay {
       cursor: pointer;
@@ -33,10 +34,12 @@
       background-repeat: no-repeat;
       background-position: center;
       background-size: 5%;
+      position: absolute;
+      width: 100%;
+      height: calc(100% - 4px);
     }
 
     &-video {
-      position: relative;
       z-index: -1;
       width: 100%;
     }

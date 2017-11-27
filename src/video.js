@@ -46,8 +46,8 @@ class Video {
         this.video.src = video.video;
         this.video.poster = video.poster;
 
-        this.overlayElement.appendChild(this.video);
         containerElement.appendChild(this.overlayElement);
+        containerElement.appendChild(this.video);
         this.container.insertBefore(containerElement, this.container.childNodes[0]);
         this.container.insertBefore(title, this.container.childNodes[0]);
 
