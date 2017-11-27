@@ -257,12 +257,10 @@ var Video = function () {
         this.video.play();
         this.playButton.src = 'img/pause.svg';
         this.overlayElement.classList.remove('player-container-overlay');
-        //þarf líka að taka af overlay hérna
       } else {
         this.video.pause();
         this.playButton.src = 'img/play.svg';
         this.overlayElement.classList.add('player-container-overlay');
-        //setja overlay
       }
     }
   }, {
@@ -276,9 +274,6 @@ var Video = function () {
         this.muteButton.src = 'img/mute.svg';
       }
     }
-
-    //gæti mögulegt þurft að kveikja og slökkva á default controls herna qrueirgniuergnoano
-
   }, {
     key: 'fullscreen',
     value: function fullscreen() {

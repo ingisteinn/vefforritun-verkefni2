@@ -37,24 +37,24 @@ class Video {
         const containerElement = document.createElement('div');
         containerElement.classList.add('player-container');
         this.playerContainer = containerElement;
-        
+
         this.overlayElement = document.createElement('div');
         this.overlayElement.classList.add('player-container-overlay');
 
         this.video = document.createElement('video');
         this.video.classList.add('player-container-video');
         this.video.src = video.video;
-        
+
         this.overlayElement.appendChild(this.video);
         containerElement.appendChild(this.overlayElement);
         this.container.insertBefore(containerElement, this.container.childNodes[0]);
         this.container.insertBefore(title, this.container.childNodes[0]);
-        
+
         this.createButtons();
       }
     });
-    
-    if(!found) {
+
+    if (!found) {
       this.container.insertBefore(document.createTextNode('Videó er ekki til'), this.container.childNodes[0]);
     }
   }
@@ -78,26 +78,28 @@ class Video {
 
     this.nextButton = document.querySelector('.next');
     this.nextButton.addEventListener('click', this.next.bind(this));
-    
+
     this.playerContainer.addEventListener('click', this.playpause.bind(this));
   }
 
   //Atburðir settir á eventlistener
 
   playpause() {
-      console.log(this.video);
+    console.log(this.video);
     if (this.video.paused == true) {
       this.video.play();
       this.playButton.src = 'img/pause.svg'
       this.overlayElement.classList.remove('player-container-overlay');
-      //þarf líka að taka af overlay hérna
+
+
     } else {
       this.video.pause();
-      this.playButton.src = 'img/play.svg'
+      this.playButton.src = 'img/play.svg';
       this.overlayElement.classList.add('player-container-overlay');
-      //setja overlay
     }
   }
+
+
 
   mute() {
     if (this.video.muted == false) {
@@ -110,18 +112,15 @@ class Video {
   }
 
 
-  //gæti mögulegt þurft að kveikja og slökkva á default controls herna qrueirgniuergnoano
 
   fullscreen() {
     if (this.video.requestFullscreen) {
-        this.video.requestFullscreen();
-      }
-      else if (this.video.mozRequestFullScreen) {
-        this.video.mozRequestFullScreen();
-      }
-      else if (this.video.webkitRequestFullscreen) {
-        this.video.webkitRequestFullscreen();
-      }
+      this.video.requestFullscreen();
+    } else if (this.video.mozRequestFullScreen) {
+      this.video.mozRequestFullScreen();
+    } else if (this.video.webkitRequestFullscreen) {
+      this.video.webkitRequestFullscreen();
+    }
   }
 
   back() {
