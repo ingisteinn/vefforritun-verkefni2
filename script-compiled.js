@@ -204,6 +204,7 @@ var Video = function () {
           _this2.video = document.createElement('video');
           _this2.video.classList.add('player-container-video');
           _this2.video.src = video.video;
+          _this2.video.poster = video.poster;
 
           _this2.overlayElement.appendChild(_this2.video);
           containerElement.appendChild(_this2.overlayElement);

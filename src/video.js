@@ -41,6 +41,7 @@ class Video {
         this.video = document.createElement('video');
         this.video.classList.add('player-container-video');
         this.video.src = video.video;
+        this.video.poster = video.poster;
 
         this.overlayElement.appendChild(this.video);
         containerElement.appendChild(this.overlayElement);

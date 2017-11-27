@@ -2,7 +2,7 @@
 
 // þarf þetta?
 
-html {
+html { /* stylelint-disable-line */
   box-sizing: border-box;
   padding: 0.5em;
   font-family: Arial;
@@ -10,9 +10,7 @@ html {
   color: rgba(255, 255, 255, 1);
 }
 
-*,
-*:before,
-*:after {
+*, *:before, *:after { /* stylelint-disable-line */
   box-sizing: inherit;
 
   // fjarlægjum margin og padding
@@ -22,15 +20,15 @@ html {
   // veit ekki alveg hvort þurfi
 }
 
-body {
+body { /* stylelint-disable-line */
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-main {
+main { /* stylelint-disable-line */
   font-size: 1em;
 }
 
-a {
+a { /* stylelint-disable-line */
   color: #fff;
   text-decoration: none;
 }
