@@ -187,7 +187,7 @@ var Video = function () {
         }
         throw new Error('Something went wrong on api server!');
       }).then(function (data) {
-        _this.loadMsgContainer.removeChild(_this.loadMsg);
+        _this.container.removeChild(_this.loadMsgContainer);
         _this.getVideo(data);
       }).catch(function (error) {
         console.error(error); // eslint-disable-line

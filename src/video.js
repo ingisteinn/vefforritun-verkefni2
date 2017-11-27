@@ -16,7 +16,7 @@ class Video {
         throw new Error('Something went wrong on api server!');
       })
       .then((data) => {
-        this.loadMsgContainer.removeChild(this.loadMsg);
+        this.container.removeChild(this.loadMsgContainer);
         this.getVideo(data);
       })
       .catch((error) => {
