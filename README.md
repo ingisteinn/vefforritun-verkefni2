@@ -3,7 +3,7 @@ Keyrsla:
 Til þess að keyra verkefnið er hægt að fara á slóð verkefnisins og skoða það í vafra. Ekki þarf frekari leiðbeiningar sé þessi leið valin.
 
 Það er einnig hægt að ná í zip-skjalið sem finnst á sömu slóð.
-Tölva þarf að hafa forrit á borð við Node.js til þess að keyra verkefnið.
+Tölva þarf að hafa npm til þess að keyra verkefnið.
 Nota þarf npm og skipanalínuna, þ.e. farið er inn í verkefnið og
 nota skipunina "npm install" og svo "npm run dev".
 Þá ætti forritið að keyrast á aðalvafra notanda. Aðeins þarf að nota seinni skipunina til þess að opna verkefnið aftur.
